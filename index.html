@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Campus Maintenance Requests demonstration system">
+  <title>CampusCare | Maintenance Requests</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="CampusCare home">
+      <span class="brand-mark">CC</span>
+      <span><strong>CampusCare</strong><small>Maintenance portal</small></span>
+    </a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav id="main-nav" aria-label="Main navigation">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#manage" class="nav-link">Manage Records</a>
+      <a href="#about" class="nav-link">About</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <span class="eyebrow">MULUNGUSHI UNIVERSITY • ICT251</span>
+        <h1>A better campus<br><span>starts with a report.</span></h1>
+        <p>Report maintenance problems around campus and follow their progress in one simple place.</p>
+        <a class="button button-light" href="#manage">Manage requests <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-circle"></div><div class="art-card"><span>✓</span><strong>Campus care</strong><small>Every issue matters</small></div>
+        <div class="art-line"></div><div class="art-dot"></div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Request summary">
+      <article class="stat-card"><span class="stat-icon">▤</span><div><strong id="total-stat">0</strong><small>Total requests</small></div></article>
+      <article class="stat-card"><span class="stat-icon pending-icon">◷</span><div><strong id="pending-stat">0</strong><small>Pending</small></div></article>
+      <article class="stat-card"><span class="stat-icon progress-icon">↻</span><div><strong id="progress-stat">0</strong><small>In progress</small></div></article>
+      <article class="stat-card"><span class="stat-icon complete-icon">✓</span><div><strong id="completed-stat">0</strong><small>Completed</small></div></article>
+    </section>
+
+    <section class="section" id="manage">
+      <div class="section-heading">
+        <div><span class="eyebrow">REQUEST CENTRE</span><h2>Manage maintenance requests</h2><p>Add a new issue or update an existing request.</p></div>
+        <span class="local-tag"><span></span> Browser demo data</span>
+      </div>
+
+      <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+
+      <div class="workspace">
+        <section class="panel form-panel" aria-labelledby="form-heading">
+          <div class="panel-heading"><div><span class="eyebrow">REQUEST DETAILS</span><h3 id="form-heading">Create a request</h3></div><span class="step-number">01</span></div>
+          <form id="record-form" novalidate>
+            <input type="hidden" id="record-id">
+            <label for="title">Request title <span>*</span></label>
+            <input id="title" name="title" type="text" minlength="3" maxlength="80" placeholder="e.g. Broken classroom light" required>
+            <div class="hint">3–80 characters</div>
+
+            <label for="category">Category <span>*</span></label>
+            <select id="category" name="category" required>
+              <option value="">Choose a category</option>
+              <option>Electrical</option><option>Plumbing</option><option>Furniture</option>
+              <option>Cleaning</option><option>Other</option>
+            </select>
+            <div class="hint">Choose the type of maintenance issue</div>
+
+            <label for="description">Description <span>*</span></label>
+            <textarea id="description" name="description" rows="4" minlength="5" maxlength="300" placeholder="Explain where the problem is and what needs attention..." required></textarea>
+            <div class="hint">5–300 characters</div>
+
+            <label for="status">Status <span>*</span></label>
+            <select id="status" name="status" required>
+              <option>Pending</option><option>In progress</option><option>Completed</option>
+            </select>
+            <div class="form-actions">
+              <button class="button button-primary" type="submit" id="save-button">Save request <span>→</span></button>
+              <button class="button button-quiet" type="button" id="cancel-edit" hidden>Cancel edit</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel records-panel" aria-labelledby="records-heading">
+          <div class="panel-heading records-title"><div><span class="eyebrow">CAMPUS OVERVIEW</span><h3 id="records-heading">All requests</h3></div><span class="record-count" id="record-count">0 records</span></div>
+          <div class="filters">
+            <label class="search-box" for="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search by title..." aria-label="Search by title"></label>
+            <select id="status-filter" aria-label="Filter by status"><option value="All">All statuses</option><option>Pending</option><option>In progress</option><option>Completed</option></select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Request</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody id="records-body"></tbody>
+            </table>
+          </div>
+          <p class="table-foot" id="results-summary">Showing 0 records</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="about-card">
+        <div><span class="eyebrow">ABOUT THIS PROJECT</span><h2>Small fixes.<br>Better learning spaces.</h2></div>
+        <div class="about-details">
+          <p><strong>Project:</strong> CampusCare – Campus Maintenance Requests</p>
+          <p><strong>Course:</strong> ICT251 – Introduction to Web Technologies</p>
+          <p><strong>Student name:</strong> Enter your name</p>
+          <p><strong>Student number:</strong> Enter your student number</p>
+          <p class="demo-note">This Activity 6 version uses browser demonstration data stored in localStorage. The records are saved in this browser and are not shared between devices.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>CampusCare</span><span>ICT251 • Activity 6 Frontend Development</span></footer>
+
+  <dialog id="view-dialog" class="view-dialog">
+    <div class="dialog-top"><span class="eyebrow">REQUEST INFORMATION</span><button type="button" class="icon-button" id="close-dialog" aria-label="Close">×</button></div>
+    <h2 id="view-title">Request details</h2>
+    <dl id="view-details"></dl>
+    <button type="button" class="button button-primary" id="dialog-done">Done</button>
+  </dialog>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
